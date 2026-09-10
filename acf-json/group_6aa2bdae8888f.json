@@ -50,7 +50,7 @@
             "delay": 0
         },
         {
-            "key": "field_6aa2bdae8c015",
+            "key": "field_6aa2c46b20df0decd",
             "label": "Social Media Links",
             "name": "social_links",
             "aria-label": "",
@@ -68,11 +68,11 @@
             "min": 0,
             "max": 0,
             "collapsed": "",
-            "button_label": "Add Row",
+            "button_label": "Add Social Media Link",
             "rows_per_page": 20,
             "sub_fields": [
                 {
-                    "key": "field_6aa2bdae931c3",
+                    "key": "field_6aa2c46b21829dd1a",
                     "label": "Platform Name",
                     "name": "platform_name",
                     "aria-label": "",
@@ -91,10 +91,10 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": "",
-                    "parent_repeater": "field_6aa2bdae8c015"
+                    "parent_repeater": "field_6aa2c46b20df0decd"
                 },
                 {
-                    "key": "field_6aa2bdae9358d",
+                    "key": "field_6aa2c46b2187a64d6",
                     "label": "Link",
                     "name": "link",
                     "aria-label": "",
@@ -110,10 +110,10 @@
                     "default_value": "",
                     "allow_in_bindings": 0,
                     "placeholder": "",
-                    "parent_repeater": "field_6aa2bdae8c015"
+                    "parent_repeater": "field_6aa2c46b20df0decd"
                 },
                 {
-                    "key": "field_6aa2bdae93994",
+                    "key": "field_6aa2c46b218c2d88b",
                     "label": "",
                     "name": "",
                     "aria-label": "",
@@ -148,7 +148,75 @@
                     "placeholder": "",
                     "create_options": 0,
                     "save_options": 0,
-                    "parent_repeater": "field_6aa2bdae8c015"
+                    "parent_repeater": "field_6aa2c46b20df0decd"
+                }
+            ]
+        },
+        {
+            "key": "field_6aa2c3f1a0ea7a3a1",
+            "label": "Extra Info",
+            "name": "extra_info",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add Extra Info",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_6aa2c3f1a15fce6e8",
+                    "label": "Label",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "e.g., \"City\", \"Founded\", \"Industry\"",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_6aa2c3f1a0ea7a3a1"
+                },
+                {
+                    "key": "field_6aa2c3f1a1636b485",
+                    "label": "Value",
+                    "name": "value",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "e.g., \"Cairo\", \"2015\", \"Technology\"",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_6aa2c3f1a0ea7a3a1"
                 }
             ]
         }
@@ -174,5 +242,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1789050833
+    "modified": 1789052140
 }
