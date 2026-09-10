@@ -43,3 +43,21 @@ add_filter('query_vars', function ($vars) {
 	$vars[] = 'view';
 	return $vars;
 });
+
+/**
+ * Hide the default WordPress taxonomy description field in the admin area.
+ */
+add_action('admin_head', 'hide_default_taxonomy_description');
+
+function hide_default_taxonomy_description()
+{
+	// Check if we are on a taxonomy term screen (either adding or editing)
+	if (isset($_GET['taxonomy'])) {
+		echo '<style>
+            /* Hides the description field on both the "Add New" and "Edit" screens */
+            .term-description-wrap { 
+                display: none !important; 
+            }
+        </style>';
+	}
+}
