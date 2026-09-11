@@ -15,10 +15,10 @@ define('HELLO_ELEMENTOR_CHILD_VERSION', '2.0.0');
 function hello_elementor_child_scripts_styles()
 {
 	wp_enqueue_style(
-		'hello-elementor-child-style',
-		get_stylesheet_directory_uri() . '/style.css',
+		'hello-elementor-child-tailwind',
+		get_stylesheet_directory_uri() . '/assets/css/tailwind.css',
 		['hello-elementor-theme-style'],
-		HELLO_ELEMENTOR_CHILD_VERSION
+		filemtime(get_stylesheet_directory() . '/assets/css/tailwind.css')
 	);
 }
 add_action('wp_enqueue_scripts', 'hello_elementor_child_scripts_styles', 20);
