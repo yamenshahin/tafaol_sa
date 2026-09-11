@@ -5,7 +5,10 @@
     "active": true,
     "taxonomy": "private_entity",
     "object_type": [
-        "post"
+        "post",
+        "infographic",
+        "program",
+        "interview"
     ],
     "advanced_configuration": 1,
     "import_source": "",
@@ -20,17 +23,17 @@
         "update_item": "Update Private Entity",
         "add_new_item": "Add New Private Entity",
         "new_item_name": "New Private Entity Name",
+        "parent_item": "",
+        "parent_item_colon": "",
         "search_items": "Search Private Sector Entities",
-        "popular_items": "Popular Private Sector Entities",
-        "separate_items_with_commas": "Separate private sector entities with commas",
-        "add_or_remove_items": "Add or remove private sector entities",
-        "choose_from_most_used": "Choose from the most used private sector entities",
         "most_used": "",
         "not_found": "No private sector entities found",
         "no_terms": "No private sector entities",
         "name_field_description": "Names can be entered in Arabic or English.",
         "slug_field_description": "Slugs must be in English or Franco-Arabic. Enter a translated or transliterated version here.",
+        "parent_field_description": "",
         "desc_field_description": "Tagging involved private partners.",
+        "filter_by_item": "",
         "items_list_navigation": "Private Sector Entities list navigation",
         "items_list": "Private Sector Entities list",
         "back_to_items": "← Go to private sector entities",
@@ -46,7 +49,7 @@
     },
     "public": 1,
     "publicly_queryable": 1,
-    "hierarchical": 0,
+    "hierarchical": 1,
     "show_ui": 1,
     "show_in_menu": 1,
     "show_in_nav_menus": 1,
@@ -73,5 +76,5 @@
     "meta_box_sanitize_cb": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1789044683
+    "modified": 1789054331
 }

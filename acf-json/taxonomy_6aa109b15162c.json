@@ -5,7 +5,10 @@
     "active": true,
     "taxonomy": "speaker_influencer",
     "object_type": [
-        "post"
+        "post",
+        "infographic",
+        "interview",
+        "program"
     ],
     "advanced_configuration": 1,
     "import_source": "",
@@ -20,17 +23,17 @@
         "update_item": "Update speaker_influencer",
         "add_new_item": "Add New speaker_influencer",
         "new_item_name": "New speaker_influencer Name",
+        "parent_item": "",
+        "parent_item_colon": "",
         "search_items": "Search Speakers & Influencers",
-        "popular_items": "Popular Speakers & Influencers",
-        "separate_items_with_commas": "Separate speakers & influencers with commas",
-        "add_or_remove_items": "Add or remove speakers & influencers",
-        "choose_from_most_used": "Choose from the most used speakers & influencers",
         "most_used": "",
         "not_found": "No speakers & influencers found",
         "no_terms": "No speakers & influencers",
         "name_field_description": "Names can be entered in Arabic or English.",
         "slug_field_description": "Slugs must be in English or Franco-Arabic. Enter a translated or transliterated version here.",
+        "parent_field_description": "",
         "desc_field_description": "Speakers, hosts, or guests.",
+        "filter_by_item": "",
         "items_list_navigation": "Speakers & Influencers list navigation",
         "items_list": "Speakers & Influencers list",
         "back_to_items": "← Go to speakers & influencers",
@@ -46,7 +49,7 @@
     },
     "public": 1,
     "publicly_queryable": 1,
-    "hierarchical": 0,
+    "hierarchical": 1,
     "show_ui": 1,
     "show_in_menu": 1,
     "show_in_nav_menus": 1,
@@ -73,5 +76,5 @@
     "meta_box_sanitize_cb": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1789044687
+    "modified": 1789054349
 }

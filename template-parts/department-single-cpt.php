@@ -4,7 +4,7 @@
  *
  * Expected $args:
  * - department (WP_Term)
- * - view       (string)  program | infographic | interview | post
+ * - view       (string) program | infographic | interview | post
  * - paged      (int)
  */
 
@@ -16,7 +16,6 @@ if (!$department instanceof WP_Term || empty($view)) {
     return;
 }
 
-// Map view → real post type
 $post_type_map = [
     'program' => 'program',
     'infographic' => 'infographic',
@@ -31,7 +30,7 @@ if (!$post_type) {
 }
 
 // -------------------------------------------------
-// Build tax_query
+// Tax query
 // -------------------------------------------------
 $tax_query = [
     'relation' => 'AND',
@@ -42,7 +41,6 @@ $tax_query = [
     ],
 ];
 
-// Persist active filters
 $filterable_taxonomies = [
     'government_entity',
     'speaker_influencer',
@@ -63,16 +61,14 @@ foreach ($filterable_taxonomies as $tax) {
 // -------------------------------------------------
 // Query
 // -------------------------------------------------
-$query_args = [
+$isolated_query = new WP_Query([
     'post_type' => $post_type,
     'posts_per_page' => 12,
     'paged' => $paged,
     'post_status' => 'publish',
     'tax_query' => $tax_query,
     'ignore_sticky_posts' => true,
-];
-
-$isolated_query = new WP_Query($query_args);
+]);
 ?>
 
 <section class="department-single-cpt view-<?php echo esc_attr($view); ?>">
@@ -80,7 +76,7 @@ $isolated_query = new WP_Query($query_args);
     <header class="section-header">
         <h1>
             <?php echo esc_html($department->name); ?> —
-            <?php echo esc_html(ucwords(str_replace('-', ' ', $view))); ?>
+            <?php echo esc_html(ucwords(str_replace(['-', '_'], ' ', $view))); ?>
         </h1>
     </header>
 
@@ -93,11 +89,10 @@ $isolated_query = new WP_Query($query_args);
             <?php endwhile; ?>
         </div>
 
-        <div class="cpt-pagination">
+        <nav class="cpt-pagination" aria-label="<?php esc_attr_e('Pagination', 'your-textdomain'); ?>">
             <?php
             $pagination_args = ['view' => $view];
 
-            // Keep filters in pagination links
             foreach ($filterable_taxonomies as $tax) {
                 if (!empty($_GET[$tax])) {
                     $pagination_args[$tax] = sanitize_text_field(wp_unslash($_GET[$tax]));
@@ -112,7 +107,7 @@ $isolated_query = new WP_Query($query_args);
                 'add_args' => $pagination_args,
             ]);
             ?>
-        </div>
+        </nav>
 
         <?php wp_reset_postdata(); ?>
 

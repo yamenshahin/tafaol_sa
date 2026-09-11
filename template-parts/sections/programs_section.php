@@ -1,10 +1,6 @@
 <?php
 /**
- * Flexible Content Layout: Programs Section
- * File: template-parts/sections/programs_section.php
- *
- * Expected $args:
- * - department (WP_Term)
+ * Flexible Content: Programs Section
  */
 
 $department = $args['department'] ?? null;
@@ -16,7 +12,6 @@ if (!$department instanceof WP_Term) {
 $section_title = get_sub_field('section_title');
 $posts_limit = get_sub_field('posts_limit') ?: 4;
 
-// Tax query
 $tax_query = [
     'relation' => 'AND',
     [
@@ -26,12 +21,7 @@ $tax_query = [
     ],
 ];
 
-$filterable_taxonomies = [
-    'government_entity',
-    'speaker_influencer',
-    'country',
-    'city',
-];
+$filterable_taxonomies = ['government_entity', 'speaker_influencer', 'country', 'city'];
 
 foreach ($filterable_taxonomies as $tax) {
     if (!empty($_GET[$tax])) {
@@ -43,7 +33,7 @@ foreach ($filterable_taxonomies as $tax) {
     }
 }
 
-$section_query = new WP_Query([
+$query = new WP_Query([
     'post_type' => 'program',
     'posts_per_page' => absint($posts_limit),
     'tax_query' => $tax_query,
@@ -51,7 +41,7 @@ $section_query = new WP_Query([
     'ignore_sticky_posts' => true,
 ]);
 
-if (!$section_query->have_posts()) {
+if (!$query->have_posts()) {
     return;
 }
 ?>
@@ -64,24 +54,19 @@ if (!$section_query->have_posts()) {
         </header>
     <?php endif; ?>
 
-    <div class="cpt-grid programs-grid">
-        <?php while ($section_query->have_posts()):
-            $section_query->the_post(); ?>
+    <div class="cpt-grid">
+        <?php while ($query->have_posts()):
+            $query->the_post(); ?>
             <?php get_template_part('template-parts/cards/card', 'program'); ?>
         <?php endwhile; ?>
     </div>
 
     <?php
-    // View More link – keeps current filters
     $more_link = add_query_arg('view', 'program', get_term_link($department));
 
     foreach ($filterable_taxonomies as $tax) {
         if (!empty($_GET[$tax])) {
-            $more_link = add_query_arg(
-                $tax,
-                sanitize_text_field(wp_unslash($_GET[$tax])),
-                $more_link
-            );
+            $more_link = add_query_arg($tax, sanitize_text_field(wp_unslash($_GET[$tax])), $more_link);
         }
     }
     ?>

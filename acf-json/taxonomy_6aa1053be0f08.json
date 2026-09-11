@@ -5,7 +5,7 @@
     "active": true,
     "taxonomy": "program_series",
     "object_type": [
-        "post"
+        "program"
     ],
     "advanced_configuration": 1,
     "import_source": "",
@@ -20,17 +20,17 @@
         "update_item": "Update Program Series",
         "add_new_item": "Add New Program Series",
         "new_item_name": "New Program Series Name",
+        "parent_item": "",
+        "parent_item_colon": "",
         "search_items": "Search Program Series",
-        "popular_items": "Popular Program Series",
-        "separate_items_with_commas": "Separate program series with commas",
-        "add_or_remove_items": "Add or remove program series",
-        "choose_from_most_used": "Choose from the most used program series",
         "most_used": "",
         "not_found": "No program series found",
         "no_terms": "No program series",
         "name_field_description": "Names can be entered in Arabic or English.",
         "slug_field_description": "Slugs must be in English or Franco-Arabic. Enter a translated or transliterated version here.",
+        "parent_field_description": "",
         "desc_field_description": "Grouping episodic or related programs.",
+        "filter_by_item": "",
         "items_list_navigation": "Program Series list navigation",
         "items_list": "Program Series list",
         "back_to_items": "← Go to program series",
@@ -46,7 +46,7 @@
     },
     "public": 1,
     "publicly_queryable": 1,
-    "hierarchical": 0,
+    "hierarchical": 1,
     "show_ui": 1,
     "show_in_menu": 1,
     "show_in_nav_menus": 1,
@@ -73,5 +73,5 @@
     "meta_box_sanitize_cb": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1789044685
+    "modified": 1789137121
 }

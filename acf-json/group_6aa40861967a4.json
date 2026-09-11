@@ -1,0 +1,321 @@
+{
+    "key": "group_6aa40861967a4",
+    "title": "Department Layout Engine",
+    "fields": [
+        {
+            "key": "field_6aa40862a6f5c",
+            "label": "Department Sections",
+            "name": "department_sections",
+            "aria-label": "",
+            "type": "flexible_content",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layouts": {
+                "layout_6aa415f23b57c": {
+                    "key": "layout_6aa415f23b57c",
+                    "name": "posts_section",
+                    "label": "Posts (News) Section",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6aa415f23b57d",
+                            "label": "Section Title",
+                            "name": "section_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_6aa415f23b57e",
+                            "label": "Posts Limit",
+                            "name": "posts_limit",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 4,
+                            "min": "",
+                            "max": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "step": "",
+                            "prepend": "",
+                            "append": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_6aa416023b582": {
+                    "key": "layout_6aa416023b582",
+                    "name": "infographics_section",
+                    "label": "Infographics Section",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6aa416023b583",
+                            "label": "Section Title",
+                            "name": "section_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_6aa416023b584",
+                            "label": "Posts Limit",
+                            "name": "posts_limit",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 4,
+                            "min": "",
+                            "max": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "step": "",
+                            "prepend": "",
+                            "append": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_6aa415f83b57f": {
+                    "key": "layout_6aa415f83b57f",
+                    "name": "interviews_section",
+                    "label": "Interviews Section",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6aa415f83b580",
+                            "label": "Section Title",
+                            "name": "section_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_6aa415f83b581",
+                            "label": "Posts Limit",
+                            "name": "posts_limit",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 4,
+                            "min": "",
+                            "max": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "step": "",
+                            "prepend": "",
+                            "append": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_6aa40895a7c7d": {
+                    "key": "layout_6aa40895a7c7d",
+                    "name": "programs_section",
+                    "label": "Programs Section",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6aa40962a6f5d",
+                            "label": "Section Title",
+                            "name": "section_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_6aa40974a6f5e",
+                            "label": "Posts Limit",
+                            "name": "posts_limit",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 4,
+                            "min": "",
+                            "max": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "step": "",
+                            "prepend": "",
+                            "append": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_6aa428e94edb9": {
+                    "key": "layout_6aa428e94edb9",
+                    "name": "speakers_section",
+                    "label": "Speakers Section",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6aa428f34edbb",
+                            "label": "Section Title",
+                            "name": "section_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_6aa429014edbc",
+                            "label": "Featured Speakers",
+                            "name": "featured_speakers",
+                            "aria-label": "",
+                            "type": "taxonomy",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "taxonomy": "speaker_influencer",
+                            "add_term": 0,
+                            "save_terms": 0,
+                            "load_terms": 0,
+                            "return_format": "object",
+                            "field_type": "multi_select",
+                            "allow_null": 0,
+                            "allow_in_bindings": 0,
+                            "bidirectional": 0,
+                            "multiple": 0,
+                            "bidirectional_target": []
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            },
+            "min": "",
+            "max": "",
+            "button_label": "Add Section"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "department"
+            }
+        ]
+    ],
+    "menu_order": 1,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1789143389
+}

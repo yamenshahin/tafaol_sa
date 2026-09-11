@@ -227,11 +227,6 @@
                 "param": "taxonomy",
                 "operator": "==",
                 "value": "geographic"
-            },
-            {
-                "param": "post_taxonomy",
-                "operator": "==",
-                "value": "department:tourism"
             }
         ]
     ],
@@ -247,5 +242,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1789052311
+    "modified": 1789052982
 }
