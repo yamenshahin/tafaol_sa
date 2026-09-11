@@ -8,8 +8,8 @@
             "name": "taxonomy_image",
             "aria-label": "",
             "type": "image",
-            "instructions": "",
-            "required": 0,
+            "instructions": "Please ensure the uploaded image has a 16:9 aspect ratio and a maximum width of 1920px.",
+            "required": 1,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -26,7 +26,7 @@
             "max_size": "",
             "mime_types": "",
             "allow_in_bindings": 0,
-            "preview_size": "medium"
+            "preview_size": "full"
         },
         {
             "key": "field_6aa2bd8349620",
@@ -35,7 +35,7 @@
             "aria-label": "",
             "type": "wysiwyg",
             "instructions": "",
-            "required": 0,
+            "required": 1,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -72,28 +72,6 @@
             "rows_per_page": 20,
             "sub_fields": [
                 {
-                    "key": "field_6aa2bd834e23d",
-                    "label": "Platform Name",
-                    "name": "platform_name",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "allow_in_bindings": 0,
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "parent_repeater": "field_6aa2bd83499f0"
-                },
-                {
                     "key": "field_6aa2bd834e5bb",
                     "label": "Link",
                     "name": "link",
@@ -114,8 +92,8 @@
                 },
                 {
                     "key": "field_6aa2bd834e9bf",
-                    "label": "",
-                    "name": "",
+                    "label": "Platform",
+                    "name": "platform",
                     "aria-label": "",
                     "type": "select",
                     "instructions": "",
@@ -242,5 +220,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1789052163
+    "modified": 1789169619
 }

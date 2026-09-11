@@ -8,7 +8,7 @@
             "name": "taxonomy_image",
             "aria-label": "",
             "type": "image",
-            "instructions": "",
+            "instructions": "Please ensure the uploaded image has a 9:16 aspect ratio and a maximum width of 1920px.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -72,28 +72,6 @@
             "rows_per_page": 20,
             "sub_fields": [
                 {
-                    "key": "field_6aa2bee74d499",
-                    "label": "Platform Name",
-                    "name": "platform_name",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "allow_in_bindings": 0,
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "parent_repeater": "field_6aa2bee74903f"
-                },
-                {
                     "key": "field_6aa2bee74d6cd",
                     "label": "Link",
                     "name": "link",
@@ -114,8 +92,8 @@
                 },
                 {
                     "key": "field_6aa2bee74dac4",
-                    "label": "",
-                    "name": "",
+                    "label": "Platform",
+                    "name": "platform",
                     "aria-label": "",
                     "type": "select",
                     "instructions": "",
@@ -242,5 +220,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1789052120
+    "modified": 1789168832
 }
