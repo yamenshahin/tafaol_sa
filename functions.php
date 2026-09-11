@@ -9,15 +9,21 @@ if (!defined('ABSPATH')) {
 
 define('HELLO_ELEMENTOR_CHILD_VERSION', '2.0.0');
 
-/**
- * Load child theme scripts & styles.
- */
 function hello_elementor_child_scripts_styles()
 {
+	// 1. Enqueue the root style.css (Theme identity & base custom styles)
+	wp_enqueue_style(
+		'hello-elementor-child-style',
+		get_stylesheet_uri(),
+		['hello-elementor-theme-style'],
+		filemtime(get_stylesheet_directory() . '/style.css')
+	);
+
+	// 2. Enqueue the compiled Tailwind utilities
 	wp_enqueue_style(
 		'hello-elementor-child-tailwind',
 		get_stylesheet_directory_uri() . '/assets/css/tailwind.css',
-		['hello-elementor-theme-style'],
+		['hello-elementor-child-style'], // Load after style.css so utility classes take precedence
 		filemtime(get_stylesheet_directory() . '/assets/css/tailwind.css')
 	);
 }
