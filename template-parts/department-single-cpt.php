@@ -68,8 +68,7 @@ $isolated_query = new WP_Query([
         <header class="mb-12 border-b border-gray-100 pb-6">
             <h1 class="text-3xl font-bold text-gray-900 tracking-tight">
                 <?php echo esc_html($department->name); ?> —
-                <span
-                    class="text-gray-500"><?php echo esc_html(ucwords(str_replace(['-', '_'], ' ', $view))); ?></span>
+                <span class="text-gray-500"><?php echo esc_html(ucwords(str_replace(['-', '_'], ' ', $view))); ?></span>
             </h1>
         </header>
 
