@@ -233,15 +233,15 @@
                     "min": "",
                     "max": ""
                 },
-                "layout_6aa428e94edb9": {
-                    "key": "layout_6aa428e94edb9",
-                    "name": "speakers_section",
-                    "label": "Speakers Section",
+                "layout_6aa42c2dba600": {
+                    "key": "layout_6aa42c2dba600",
+                    "name": "government_entities_section",
+                    "label": "Government Entities Section",
                     "display": "block",
                     "sub_fields": [
                         {
-                            "key": "field_6aa428f34edbb",
-                            "label": "Section Title",
+                            "key": "field_6aa42c6aba602",
+                            "label": "section_title",
                             "name": "section_title",
                             "aria-label": "",
                             "type": "text",
@@ -259,13 +259,23 @@
                             "placeholder": "",
                             "prepend": "",
                             "append": ""
-                        },
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_6aa42cc7ba60a": {
+                    "key": "layout_6aa42cc7ba60a",
+                    "name": "private_entities_section",
+                    "label": "Private Entities Section",
+                    "display": "block",
+                    "sub_fields": [
                         {
-                            "key": "field_6aa429014edbc",
-                            "label": "Featured Speakers",
-                            "name": "featured_speakers",
+                            "key": "field_6aa42cc7ba60b",
+                            "label": "section_title",
+                            "name": "section_title",
                             "aria-label": "",
-                            "type": "taxonomy",
+                            "type": "text",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -274,17 +284,74 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "taxonomy": "speaker_influencer",
-                            "add_term": 0,
-                            "save_terms": 0,
-                            "load_terms": 0,
-                            "return_format": "object",
-                            "field_type": "multi_select",
-                            "allow_null": 0,
+                            "default_value": "",
+                            "maxlength": "",
                             "allow_in_bindings": 0,
-                            "bidirectional": 0,
-                            "multiple": 0,
-                            "bidirectional_target": []
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_6aa42cceba60e": {
+                    "key": "layout_6aa42cceba60e",
+                    "name": "speakers_section",
+                    "label": "Speakers Section",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6aa42cceba60f",
+                            "label": "section_title",
+                            "name": "section_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_6aa42cc9ba60c": {
+                    "key": "layout_6aa42cc9ba60c",
+                    "name": "geographic_section",
+                    "label": "Geographic Section",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6aa42cc9ba60d",
+                            "label": "section_title",
+                            "name": "section_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
                         }
                     ],
                     "min": "",
@@ -317,5 +384,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1789143389
+    "modified": 1789144387
 }
