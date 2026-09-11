@@ -50,6 +50,7 @@
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
     --tracking-tight: -0.025em;
+    --tracking-wide: 0.025em;
     --tracking-wider: 0.05em;
     --tracking-widest: 0.1em;
     --leading-snug: 1.375;
@@ -292,6 +293,12 @@
   .aspect-\[4\/3\] {
     aspect-ratio: 4/3;
   }
+  .aspect-\[9\/16\] {
+    aspect-ratio: 9/16;
+  }
+  .aspect-\[16\/9\] {
+    aspect-ratio: 16/9;
+  }
   .h-16 {
     height: calc(var(--spacing) * 16);
   }
@@ -513,6 +520,10 @@
     --tw-tracking: var(--tracking-tight);
     letter-spacing: var(--tracking-tight);
   }
+  .tracking-wide {
+    --tw-tracking: var(--tracking-wide);
+    letter-spacing: var(--tracking-wide);
+  }
   .tracking-wider {
     --tw-tracking: var(--tracking-wider);
     letter-spacing: var(--tracking-wider);
@@ -696,6 +707,14 @@
     @supports (color: color-mix(in lab, red, red)) {
       .hover\:shadow-gray-200\/50:hover {
         --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-gray-200) 50%, transparent) var(--tw-shadow-alpha), transparent);
+      }
+    }
+    .hover\:shadow-gray-300\/50:hover {
+      --tw-shadow-color: color-mix(in srgb, oklch(87.2% 0.01 258.338) 50%, transparent);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .hover\:shadow-gray-300\/50:hover {
+        --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-gray-300) 50%, transparent) var(--tw-shadow-alpha), transparent);
       }
     }
   }
