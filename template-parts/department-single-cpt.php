@@ -1,11 +1,6 @@
 <?php
 /**
  * Template Part: Isolated CPT view under a Department
- *
- * Expected $args:
- * - department (WP_Term)
- * - view       (string) program | infographic | interview | post
- * - paged      (int)
  */
 
 $department = $args['department'] ?? null;
@@ -30,7 +25,7 @@ if (!$post_type) {
 }
 
 // -------------------------------------------------
-// Tax query
+// Tax query setup
 // -------------------------------------------------
 $tax_query = [
     'relation' => 'AND',
@@ -41,12 +36,8 @@ $tax_query = [
     ],
 ];
 
-$filterable_taxonomies = [
-    'government_entity',
-    'speaker_influencer',
-    'country',
-    'city',
-];
+// Updated to match your final taxonomy architecture
+$filterable_taxonomies = ['government_entity', 'speaker_influencer', 'private_entity', 'geographic'];
 
 foreach ($filterable_taxonomies as $tax) {
     if (!empty($_GET[$tax])) {
@@ -59,7 +50,7 @@ foreach ($filterable_taxonomies as $tax) {
 }
 
 // -------------------------------------------------
-// Query
+// Query execution
 // -------------------------------------------------
 $isolated_query = new WP_Query([
     'post_type' => $post_type,
@@ -71,48 +62,56 @@ $isolated_query = new WP_Query([
 ]);
 ?>
 
-<section class="department-single-cpt view-<?php echo esc_attr($view); ?>">
+<section class="py-12 view-<?php echo esc_attr($view); ?>">
+    <div class="max-w-7xl mx-auto px-6">
 
-    <header class="section-header">
-        <h1>
-            <?php echo esc_html($department->name); ?> —
-            <?php echo esc_html(ucwords(str_replace(['-', '_'], ' ', $view))); ?>
-        </h1>
-    </header>
+        <header class="mb-12 border-b border-gray-100 pb-6">
+            <h1 class="text-3xl font-bold text-gray-900 tracking-tight">
+                <?php echo esc_html($department->name); ?> —
+                <span
+                    class="text-gray-500"><?php echo esc_html(ucwords(str_replace(['-', '_'], ' ', $view))); ?></span>
+            </h1>
+        </header>
 
-    <?php if ($isolated_query->have_posts()): ?>
+        <?php if ($isolated_query->have_posts()): ?>
 
-        <div class="cpt-grid">
-            <?php while ($isolated_query->have_posts()):
-                $isolated_query->the_post(); ?>
-                <?php get_template_part('template-parts/cards/card', $post_type); ?>
-            <?php endwhile; ?>
-        </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <?php while ($isolated_query->have_posts()):
+                    $isolated_query->the_post(); ?>
+                    <?php get_template_part('template-parts/cards/card', $post_type); ?>
+                <?php endwhile; ?>
+            </div>
 
-        <nav class="cpt-pagination" aria-label="<?php esc_attr_e('Pagination', 'your-textdomain'); ?>">
-            <?php
-            $pagination_args = ['view' => $view];
+            <nav class="flex justify-center" aria-label="<?php esc_attr_e('Pagination', 'hello-elementor-child'); ?>">
+                <div
+                    class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-gray-200 shadow-sm">
+                    <?php
+                    $pagination_args = ['view' => $view];
 
-            foreach ($filterable_taxonomies as $tax) {
-                if (!empty($_GET[$tax])) {
-                    $pagination_args[$tax] = sanitize_text_field(wp_unslash($_GET[$tax]));
-                }
-            }
+                    foreach ($filterable_taxonomies as $tax) {
+                        if (!empty($_GET[$tax])) {
+                            $pagination_args[$tax] = sanitize_text_field(wp_unslash($_GET[$tax]));
+                        }
+                    }
 
-            echo paginate_links([
-                'total' => $isolated_query->max_num_pages,
-                'current' => $paged,
-                'prev_text' => __('&laquo; Previous', 'your-textdomain'),
-                'next_text' => __('Next &raquo;', 'your-textdomain'),
-                'add_args' => $pagination_args,
-            ]);
-            ?>
-        </nav>
+                    echo paginate_links([
+                        'total' => $isolated_query->max_num_pages,
+                        'current' => $paged,
+                        'prev_text' => __('&laquo; Previous', 'hello-elementor-child'),
+                        'next_text' => __('Next &raquo;', 'hello-elementor-child'),
+                        'add_args' => $pagination_args,
+                    ]);
+                    ?>
+                </div>
+            </nav>
 
-        <?php wp_reset_postdata(); ?>
+            <?php wp_reset_postdata(); ?>
 
-    <?php else: ?>
-        <p><?php esc_html_e('No items found.', 'your-textdomain'); ?></p>
-    <?php endif; ?>
+        <?php else: ?>
+            <div class="text-center py-16 bg-gray-50 rounded-2xl border border-dashed border-gray-200">
+                <p class="text-gray-500"><?php esc_html_e('No items found.', 'hello-elementor-child'); ?></p>
+            </div>
+        <?php endif; ?>
 
+    </div>
 </section>
