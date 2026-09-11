@@ -1,10 +1,6 @@
 <?php
 /**
  * Taxonomy Template: Department
- *
- * Handles:
- * 1. Full multi-section layout (ACF Flexible Content)
- * 2. Isolated CPT view (?view=program|infographic|interview|post)
  */
 
 get_header();
@@ -21,7 +17,6 @@ $allowed_views = ['program', 'infographic', 'interview', 'post'];
     <?php if ($view && in_array($view, $allowed_views, true)): ?>
 
         <?php
-        // Isolation mode
         get_template_part('template-parts/department', 'single-cpt', [
             'department' => $term,
             'view' => $view,
@@ -32,10 +27,15 @@ $allowed_views = ['program', 'infographic', 'interview', 'post'];
     <?php else: ?>
 
         <?php
-        // Multi-section mode (ACF Flexible Content)
+        // Active filter header (only shows when a filter is active)
+        get_template_part('template-parts/sections/active-filter-header', null, [
+            'department' => $term,
+        ]);
+        ?>
+
+        <?php
         $sections = get_field('department_sections', $term);
 
-        // Fallback to global default
         if (empty($sections)) {
             $sections = get_field('default_department_sections', 'option');
         }
