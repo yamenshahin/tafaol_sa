@@ -1,6 +1,6 @@
 <?php
 /**
- * Flexible Content: Private Entities Section (Filter)
+ * Flexible Content: Private Entities Section
  */
 $department = $args['department'] ?? null;
 if (!$department instanceof WP_Term) {
@@ -28,31 +28,47 @@ if (empty($active_terms)) {
         </header>
 
         <div
-            class="flex gap-5 overflow-x-auto pb-6 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            class="flex gap-5 overflow-x-auto pb-6 snap-x snap-mandatory items-stretch [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+
             <?php foreach ($active_terms as $data):
                 $term = $data['term'];
                 $count = $data['count'];
                 $url = add_query_arg($query_var, $term->slug, get_term_link($department));
 
-                $image_id = get_field('taxonomy_image', $term);
-                $image_html = $image_id ? wp_get_attachment_image($image_id, 'medium', false, ['class' => 'w-16 h-16 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300']) : '';
+                // Fetch the ACF Image Array
+                $image = get_field('taxonomy_image', $term);
                 ?>
 
                 <a href="<?php echo esc_url($url); ?>"
-                    class="group flex-none w-44 snap-start flex flex-col items-center justify-between p-6 bg-white border border-gray-100 rounded-2xl hover:border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ease-out">
+                    class="group flex-none w-48 snap-start flex flex-col items-center p-6 bg-white border border-gray-100 rounded-2xl hover:border-gray-200 hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-1 transition-all duration-300 ease-out">
 
-                    <?php if ($image_html): ?>
-                        <div class="mb-5"><?php echo $image_html; ?></div>
-                    <?php endif; ?>
+                    <!-- 1:1 Square Logo Wrapper -->
+                    <div
+                        class="w-24 h-24 aspect-square mb-5 rounded-2xl bg-gray-50 flex items-center justify-center overflow-hidden border border-gray-100 group-hover:border-blue-100 group-hover:bg-white transition-colors duration-300 shadow-sm">
 
-                    <h3 class="text-sm font-medium text-gray-800 text-center mb-3 line-clamp-2">
+                        <?php if (!empty($image) && is_array($image)): ?>
+                            <!-- Extract the ID from the array for optimized srcset rendering -->
+                            <?php echo wp_get_attachment_image($image['ID'], 'medium', false, ['class' => 'w-full h-full object-contain p-3 group-hover:scale-110 transition-transform duration-500']); ?>
+                        <?php else: ?>
+                            <!-- Fallback Initial -->
+                            <span class="text-3xl font-bold text-gray-300 uppercase">
+                                <?php echo esc_html(mb_substr($term->name, 0, 1)); ?>
+                            </span>
+                        <?php endif; ?>
+
+                    </div>
+
+                    <h3
+                        class="text-sm font-bold text-gray-900 text-center mb-4 line-clamp-2 leading-snug group-hover:text-blue-600 transition-colors">
                         <?php echo esc_html($term->name); ?>
                     </h3>
 
-                    <span
-                        class="text-xs font-semibold text-gray-500 bg-gray-50 px-3 py-1 rounded-full group-hover:bg-gray-100 transition-colors">
-                        (<?php echo esc_html($count); ?>)
-                    </span>
+                    <div class="mt-auto">
+                        <span
+                            class="text-xs font-bold tracking-wide text-gray-500 bg-gray-100 px-3 py-1.5 rounded-full group-hover:bg-blue-50 group-hover:text-blue-700 transition-colors">
+                            <?php echo esc_html($count); ?>     <?php esc_html_e('Items', 'hello-elementor-child'); ?>
+                        </span>
+                    </div>
 
                 </a>
 
