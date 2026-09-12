@@ -356,6 +356,37 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_6aa4942c540a0": {
+                    "key": "layout_6aa4942c540a0",
+                    "name": "social_section",
+                    "label": "Social Media Section",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6aa4942c540a1",
+                            "label": "section_title",
+                            "name": "section_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -384,5 +415,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1789144387
+    "modified": 1789170747
 }
