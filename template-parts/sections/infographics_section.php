@@ -1,27 +1,26 @@
 <?php
 /**
  * Flexible Content: Infographics Section
+ * Works on Department pages and Homepage
  */
 
 $department = $args['department'] ?? null;
-if (!$department instanceof WP_Term) {
-    return;
-}
 
 $section_title = get_sub_field('section_title');
 $posts_limit = get_sub_field('posts_limit') ?: 4;
 
-$tax_query = [
-    'relation' => 'AND',
-    [
+$tax_query = ['relation' => 'AND'];
+
+if ($department instanceof WP_Term) {
+    $tax_query[] = [
         'taxonomy' => 'department',
         'field' => 'term_id',
         'terms' => $department->term_id,
-    ],
-];
+    ];
+}
 
-$filterable_taxonomies = ['government_entity', 'speaker_influencer', 'country', 'city'];
-$more_link = add_query_arg('view', 'infographic', get_term_link($department));
+$filterable_taxonomies = ['government_entity', 'private_entity', 'speaker_influencer', 'country', 'city'];
+$more_link_args = [];
 
 foreach ($filterable_taxonomies as $tax) {
     if (!empty($_GET[$tax])) {
@@ -31,7 +30,7 @@ foreach ($filterable_taxonomies as $tax) {
             'field' => 'slug',
             'terms' => $term_slug,
         ];
-        $more_link = add_query_arg($tax, $term_slug, $more_link);
+        $more_link_args[$tax] = $term_slug;
     }
 }
 
@@ -46,16 +45,20 @@ $query = new WP_Query([
 if (!$query->have_posts()) {
     return;
 }
+
+if ($department instanceof WP_Term) {
+    $more_link = add_query_arg(array_merge(['view' => 'infographic'], $more_link_args), get_term_link($department));
+} else {
+    $more_link = get_post_type_archive_link('infographic');
+}
 ?>
 
 <section class="department-section infographics-section py-12 border-b border-gray-100 last:border-0">
     <div class="max-w-7xl mx-auto px-6">
-
         <header class="flex justify-between items-end mb-8">
             <?php if ($section_title): ?>
                 <h2 class="text-2xl font-bold text-gray-900 tracking-tight"><?php echo esc_html($section_title); ?></h2>
             <?php endif; ?>
-
             <a href="<?php echo esc_url($more_link); ?>"
                 class="text-sm font-medium text-red-600 hover:text-red-800 transition-colors">
                 <?php esc_html_e('View All Infographics', 'hello-elementor-child'); ?> &rarr;
@@ -68,7 +71,7 @@ if (!$query->have_posts()) {
                 <?php get_template_part('template-parts/cards/card', 'infographic'); ?>
             <?php endwhile; ?>
         </div>
-
     </div>
 </section>
+
 <?php wp_reset_postdata(); ?>

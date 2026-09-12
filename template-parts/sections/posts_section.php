@@ -1,40 +1,56 @@
 <?php
 /**
- * Flexible Content: News Section
+ * Flexible Content: Posts / News Section
+ * Works on Department pages and on the Homepage
  */
 
 $department = $args['department'] ?? null;
-if (!$department instanceof WP_Term) {
-    return;
-}
 
 $section_title = get_sub_field('section_title');
 $posts_limit = get_sub_field('posts_limit') ?: 4;
 
-$tax_query = [
-    'relation' => 'AND',
-    [
+// -------------------------------------------------
+// Build tax_query
+// -------------------------------------------------
+$tax_query = ['relation' => 'AND'];
+
+// Only filter by department if we are on a department page
+if ($department instanceof WP_Term) {
+    $tax_query[] = [
         'taxonomy' => 'department',
         'field' => 'term_id',
         'terms' => $department->term_id,
-    ],
+    ];
+}
+
+// Global filters from URL
+$filterable_taxonomies = [
+    'government_entity',
+    'private_entity',
+    'speaker_influencer',
+    'country',
+    'city',
 ];
 
-$filterable_taxonomies = ['government_entity', 'speaker_influencer', 'country', 'city'];
-$more_link = add_query_arg('view', 'post', get_term_link($department));
+$more_link_args = [];
 
 foreach ($filterable_taxonomies as $tax) {
     if (!empty($_GET[$tax])) {
         $term_slug = sanitize_text_field(wp_unslash($_GET[$tax]));
+
         $tax_query[] = [
             'taxonomy' => $tax,
             'field' => 'slug',
             'terms' => $term_slug,
         ];
-        $more_link = add_query_arg($tax, $term_slug, $more_link);
+
+        $more_link_args[$tax] = $term_slug;
     }
 }
 
+// -------------------------------------------------
+// Query
+// -------------------------------------------------
 $query = new WP_Query([
     'post_type' => 'post',
     'posts_per_page' => absint($posts_limit),
@@ -46,6 +62,21 @@ $query = new WP_Query([
 if (!$query->have_posts()) {
     return;
 }
+
+// -------------------------------------------------
+// Build "View All" link
+// -------------------------------------------------
+if ($department instanceof WP_Term) {
+    // Department context → go to isolated view
+    $more_link = add_query_arg(
+        array_merge(['view' => 'post'], $more_link_args),
+        get_term_link($department)
+    );
+} else {
+    // Homepage context → go to normal blog / news archive
+    $more_link = get_post_type_archive_link('post');
+    // or: $more_link = home_url( '/news/' ); if you prefer
+}
 ?>
 
 <section class="department-section news-section py-12 border-b border-gray-100 last:border-0">
@@ -53,7 +84,9 @@ if (!$query->have_posts()) {
 
         <header class="flex justify-between items-end mb-8">
             <?php if ($section_title): ?>
-                <h2 class="text-2xl font-bold text-gray-900 tracking-tight"><?php echo esc_html($section_title); ?></h2>
+                <h2 class="text-2xl font-bold text-gray-900 tracking-tight">
+                    <?php echo esc_html($section_title); ?>
+                </h2>
             <?php endif; ?>
 
             <a href="<?php echo esc_url($more_link); ?>"
@@ -71,4 +104,6 @@ if (!$query->have_posts()) {
 
     </div>
 </section>
-<?php wp_reset_postdata(); ?>
+
+<?php
+wp_reset_postdata();
