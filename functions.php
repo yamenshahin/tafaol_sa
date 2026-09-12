@@ -153,3 +153,42 @@ function get_department_intersected_terms(int $department_id, string $taxonomy, 
 
 	return $output;
 }
+
+/**
+ * Dynamically swap the Custom Logo based on Department context.
+ */
+add_filter('theme_mod_custom_logo', 'dynamic_department_custom_logo');
+
+function dynamic_department_custom_logo($default_logo_id)
+{
+	// Do not interfere with the WordPress admin backend
+	if (is_admin()) {
+		return $default_logo_id;
+	}
+
+	$current_department = null;
+
+	// 1. Context Engine: Figure out if we are in a Department
+	if (is_tax('department')) {
+		$current_department = get_queried_object();
+	} elseif (is_singular(['post', 'program', 'infographic', 'interview'])) {
+		$terms = get_the_terms(get_the_ID(), 'department');
+		if (!empty($terms) && !is_wp_error($terms)) {
+			$current_department = $terms[0];
+		}
+	}
+
+	// 2. Fetch the ACF Logo if context matches
+	if ($current_department) {
+		$image_data = get_field('department_logo', $current_department);
+
+		if (is_array($image_data) && !empty($image_data['ID'])) {
+			return $image_data['ID']; // Return Department Logo ID
+		} elseif (is_numeric($image_data) && !empty($image_data)) {
+			return (int) $image_data; // Return Department Logo ID
+		}
+	}
+
+	// 3. Fallback to the default global logo
+	return $default_logo_id;
+}

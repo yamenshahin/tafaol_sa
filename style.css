@@ -20,3 +20,24 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
     gap: 20px;
     margin-bottom: 2rem;
 }
+
+/* Control the size of the dynamic department and global logos */
+.site-header .custom-logo {
+    max-width: 180px;
+    /* Adjust this value to shrink/grow the logo */
+    height: auto;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+/* Make it slightly smaller on mobile devices */
+@media (max-width: 768px) {
+    .site-header .custom-logo {
+        max-width: 130px;
+    }
+}
+
+/* Hide the footer temporary */
+#site-footer {
+    display: none;
+}
