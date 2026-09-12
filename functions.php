@@ -11,7 +11,15 @@ define('HELLO_ELEMENTOR_CHILD_VERSION', '2.0.0');
 
 function hello_elementor_child_scripts_styles()
 {
-	// 1. Enqueue the root style.css (Theme identity & base custom styles)
+	// 1. Enqueue FontAwesome (Load this first so it's ready for your UI)
+	wp_enqueue_style(
+		'font-awesome-cdn',
+		'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
+		[],
+		'6.5.1'
+	);
+
+	// 2. Enqueue the root style.css (Theme identity & base custom styles)
 	wp_enqueue_style(
 		'hello-elementor-child-style',
 		get_stylesheet_uri(),
@@ -19,11 +27,11 @@ function hello_elementor_child_scripts_styles()
 		filemtime(get_stylesheet_directory() . '/style.css')
 	);
 
-	// 2. Enqueue the compiled Tailwind utilities
+	// 3. Enqueue the compiled Tailwind utilities
 	wp_enqueue_style(
 		'hello-elementor-child-tailwind',
 		get_stylesheet_directory_uri() . '/assets/css/tailwind.css',
-		['hello-elementor-child-style'], // Load after style.css so utility classes take precedence
+		['hello-elementor-child-style'],
 		filemtime(get_stylesheet_directory() . '/assets/css/tailwind.css')
 	);
 }

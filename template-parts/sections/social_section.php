@@ -2,15 +2,13 @@
 /**
  * Template Part: Department Social Media Links
  */
-
 $department = $args['department'] ?? null;
 if (!$department instanceof WP_Term) {
     return;
 }
 
-$social_links = get_field('social_links', $department);
-
-if (empty($social_links)) {
+// Use ACF have_rows to enable sub-field object querying
+if (!have_rows('social_links', $department)) {
     return;
 }
 ?>
@@ -32,88 +30,40 @@ if (empty($social_links)) {
 
         <div class="flex flex-wrap justify-center gap-6">
 
-            <?php foreach ($social_links as $link_item):
-                $url = $link_item['link'] ?? '#';
+            <?php
+            while (have_rows('social_links', $department)):
+                the_row();
+                $url = get_sub_field('link');
+                $platform_val = get_sub_field('platform') ?: 'fas fa-globe';
 
-                // Fetch the exact FontAwesome string you saved in ACF
-                $platform_key = $link_item['platform'] ?? 'fas fa-globe';
-
-                $icon_svg = '';
-                $action_text = __('Follow', 'hello-elementor-child');
-                $label = 'Social';
-
-                // Match against your specific ACF values
-                switch ($platform_key) {
-                    case 'fab fa-facebook-f':
-                        $label = 'Facebook';
-                        $icon_svg = '<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path></svg>';
-                        break;
-                    case 'fab fa-x-twitter':
-                        $label = 'X (Twitter)';
-                        $icon_svg = '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>';
-                        break;
-                    case 'fab fa-youtube':
-                        $label = 'YouTube';
-                        $action_text = __('Subscribe', 'hello-elementor-child');
-                        $icon_svg = '<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>';
-                        break;
-                    case 'fab fa-instagram':
-                        $label = 'Instagram';
-                        $icon_svg = '<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path></svg>';
-                        break;
-                    case 'fab fa-tiktok':
-                        $label = 'TikTok';
-                        $icon_svg = '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"></path></svg>';
-                        break;
-                    case 'fab fa-snapchat':
-                        $label = 'Snapchat';
-                        $icon_svg = '<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M11.967 1.82a6.37 6.37 0 0 0-4.088 1.492c-1.196 1.026-1.895 2.502-1.957 4.098-.035.882.175 1.75.606 2.52a4.426 4.426 0 0 0 1.216 1.41c.238.168.305.485.152.723a.526.526 0 0 1-.225.203c-1.16.54-2.453.792-3.751.73a.853.853 0 0 0-.895.968c.243 1.688 1.341 3.121 2.898 3.774h.023c.532.224 1.107.35 1.691.37h.04c.82.029 1.625.215 2.368.547.457.2.798.57.971 1.045a.558.558 0 0 1-.161.64c-.116.1-.264.15-.417.14a4.118 4.118 0 0 0-2.83.992c-.286.23-.55.487-.788.769-.364.437-.655.923-.865 1.442-.143.354.126.732.508.718h.04c1.171-.064 2.327-.377 3.39-.922a6.354 6.354 0 0 1 2.822-1.01h.084a6.36 6.36 0 0 1 2.822 1.01c1.063.545 2.219.858 3.39.922h.04c.382.014.651-.364.508-.718-.21-.519-.501-1.005-.865-1.442-.238-.282-.502-.539-.788-.769a4.118 4.118 0 0 0-2.83-.992c-.153.01-.301-.04-.417-.14a.558.558 0 0 1-.161-.64c.173-.475.514-.845.971-1.045.743-.332 1.548-.518 2.368-.547h.04c.584-.02 1.159-.146 1.691-.37h.023c1.557-.653 2.655-2.086 2.898-3.774a.853.853 0 0 0-.895-.968c-1.298.062-2.591-.19-3.751-.73a.526.526 0 0 1-.225-.203c-.153-.238-.086-.555.152-.723a4.426 4.426 0 0 0 1.216-1.41c.431-.77.641-1.638.606-2.52-.062-1.596-.761-3.072-1.957-4.098a6.37 6.37 0 0 0-4.088-1.492h-.033z" /></svg>';
-                        break;
-                    case 'fab fa-whatsapp':
-                        $label = 'WhatsApp';
-                        $action_text = __('Message', 'hello-elementor-child');
-                        $icon_svg = '<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>';
-                        break;
-                    case 'fab fa-telegram':
-                        $label = 'Telegram';
-                        $action_text = __('Join', 'hello-elementor-child');
-                        $icon_svg = '<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.46.93-4.12 2.73-.39.27-.74.4-1.06.39-.35-.01-1.02-.2-1.52-.36-.61-.2-1.1-.31-1.08-.66.01-.18.27-.36.78-.55 3.05-1.33 5.09-2.21 6.12-2.64 2.91-1.22 3.51-1.43 3.9-1.44.09 0 .28.02.41.13.11.09.14.22.15.34.01.07.01.14 0 .23z"/></svg>';
-                        break;
-                    case 'fab fa-linkedin-in':
-                        $label = 'LinkedIn';
-                        $action_text = __('Connect', 'hello-elementor-child');
-                        $icon_svg = '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>';
-                        break;
-                    case 'fas fa-globe':
-                    default:
-                        $label = 'Website';
-                        $action_text = __('Visit', 'hello-elementor-child');
-                        $icon_svg = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"></path></svg>';
-                        break;
-                }
+                // Dynamically fetch the Label you assigned in ACF (e.g., "X (Twitter)")
+                $platform_obj = get_sub_field_object('platform');
+                $label = $platform_obj['choices'][$platform_val] ?? 'Website';
                 ?>
 
                 <a href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener noreferrer"
                     class="group w-44 flex flex-col items-center justify-between p-6 bg-white border border-gray-100 rounded-2xl hover:border-gray-200 hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-1 transition-all duration-300 ease-out">
 
+                    <!-- FontAwesome Output -->
                     <div
-                        class="w-14 h-14 flex items-center justify-center rounded-full bg-gray-50 text-gray-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors duration-300 mb-4">
-                        <?php echo $icon_svg; ?>
+                        class="w-14 h-14 flex items-center justify-center rounded-full bg-gray-50 text-gray-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors duration-300 mb-4 text-2xl">
+                        <i class="<?php echo esc_attr($platform_val); ?>"></i>
                     </div>
 
+                    <!-- Dynamic Label -->
                     <h3 class="text-sm font-bold text-gray-900 mb-2">
                         <?php echo esc_html($label); ?>
                     </h3>
 
                     <span
                         class="text-xs font-semibold text-gray-400 flex items-center group-hover:text-blue-600 transition-colors">
-                        <?php echo esc_html($action_text); ?>
+                        <?php esc_html_e('Visit', 'hello-elementor-child'); ?>
                         <span class="mx-1 transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
                     </span>
 
                 </a>
 
-            <?php endforeach; ?>
+            <?php endwhile; ?>
 
         </div>
     </div>
