@@ -418,6 +418,91 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_6aa824d08379e": {
+                    "key": "layout_6aa824d08379e",
+                    "name": "ad_banner_section",
+                    "label": "Ad Banner",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6aa824db837a0",
+                            "label": "Ad Image",
+                            "name": "ad_image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "allow_in_bindings": 0,
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_6aa824ed837a1",
+                            "label": "Ad Link",
+                            "name": "ad_link",
+                            "aria-label": "",
+                            "type": "url",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_6aa8286083fc4": {
+                    "key": "layout_6aa8286083fc4",
+                    "name": "ad_code_section",
+                    "label": "Ad Code",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6aa828e883fc6",
+                            "label": "Ad Code \/ Script",
+                            "name": "ad_code",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "rows": "",
+                            "placeholder": "",
+                            "new_lines": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -453,5 +538,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1789378817
+    "modified": 1789405700
 }
