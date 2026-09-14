@@ -241,7 +241,7 @@
                     "sub_fields": [
                         {
                             "key": "field_6aa42c6aba602",
-                            "label": "section_title",
+                            "label": "Section Title",
                             "name": "section_title",
                             "aria-label": "",
                             "type": "text",
@@ -272,7 +272,7 @@
                     "sub_fields": [
                         {
                             "key": "field_6aa42cc7ba60b",
-                            "label": "section_title",
+                            "label": "Section Title",
                             "name": "section_title",
                             "aria-label": "",
                             "type": "text",
@@ -303,7 +303,7 @@
                     "sub_fields": [
                         {
                             "key": "field_6aa42cceba60f",
-                            "label": "section_title",
+                            "label": "Section Title",
                             "name": "section_title",
                             "aria-label": "",
                             "type": "text",
@@ -334,7 +334,7 @@
                     "sub_fields": [
                         {
                             "key": "field_6aa42cc9ba60d",
-                            "label": "section_title",
+                            "label": "Section Title",
                             "name": "section_title",
                             "aria-label": "",
                             "type": "text",
@@ -365,7 +365,7 @@
                     "sub_fields": [
                         {
                             "key": "field_6aa4942c540a1",
-                            "label": "section_title",
+                            "label": "Section Title",
                             "name": "section_title",
                             "aria-label": "",
                             "type": "text",
@@ -385,6 +385,15 @@
                             "append": ""
                         }
                     ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_6aa7bdd194e2f": {
+                    "key": "layout_6aa7bdd194e2f",
+                    "name": "program_series_section",
+                    "label": "Program Series Section",
+                    "display": "block",
+                    "sub_fields": [],
                     "min": "",
                     "max": ""
                 }
@@ -422,5 +431,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1789181410
+    "modified": 1789378092
 }
