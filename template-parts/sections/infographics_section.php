@@ -6,6 +6,8 @@
 
 $department = $args['department'] ?? null;
 
+
+
 $section_title = get_sub_field('section_title');
 $posts_limit = get_sub_field('posts_limit') ?: 4;
 
@@ -19,7 +21,14 @@ if ($department instanceof WP_Term) {
     ];
 }
 
-$filterable_taxonomies = ['government_entity', 'private_entity', 'speaker_influencer', 'country', 'city'];
+$filterable_taxonomies = [
+    'government_entity',
+    'private_entity',
+    'speaker_influencer',
+    'country',
+    'city',
+    'program_series'
+];
 $more_link_args = [];
 
 foreach ($filterable_taxonomies as $tax) {

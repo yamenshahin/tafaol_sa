@@ -6,6 +6,8 @@
 
 $department = $args['department'] ?? null;
 
+
+
 $section_title = get_sub_field('section_title');
 $posts_limit = get_sub_field('posts_limit') ?: 4;
 
@@ -14,7 +16,6 @@ $posts_limit = get_sub_field('posts_limit') ?: 4;
 // -------------------------------------------------
 $tax_query = ['relation' => 'AND'];
 
-// Only filter by department if we are on a department page
 if ($department instanceof WP_Term) {
     $tax_query[] = [
         'taxonomy' => 'department',
@@ -23,13 +24,13 @@ if ($department instanceof WP_Term) {
     ];
 }
 
-// Global filters from URL
 $filterable_taxonomies = [
     'government_entity',
     'private_entity',
     'speaker_influencer',
     'country',
     'city',
+    'program_series'
 ];
 
 $more_link_args = [];
@@ -67,15 +68,14 @@ if (!$query->have_posts()) {
 // Build "View All" link
 // -------------------------------------------------
 if ($department instanceof WP_Term) {
-    // Department context → go to isolated view
     $more_link = add_query_arg(
         array_merge(['view' => 'post'], $more_link_args),
         get_term_link($department)
     );
 } else {
-    // Homepage context → go to normal blog / news archive
-    $more_link = get_post_type_archive_link('post');
-    // or: $more_link = home_url( '/news/' ); if you prefer
+    // FIX: Standard posts require pulling the designated blog page ID
+    $blog_page_id = get_option('page_for_posts');
+    $more_link = $blog_page_id ? get_permalink($blog_page_id) : home_url('/');
 }
 ?>
 
@@ -105,5 +105,4 @@ if ($department instanceof WP_Term) {
     </div>
 </section>
 
-<?php
-wp_reset_postdata();
+<?php wp_reset_postdata(); ?>

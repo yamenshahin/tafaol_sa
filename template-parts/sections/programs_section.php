@@ -19,7 +19,15 @@ if ($department instanceof WP_Term) {
     ];
 }
 
-$filterable_taxonomies = ['government_entity', 'private_entity', 'speaker_influencer', 'country', 'city'];
+$filterable_taxonomies = [
+    'government_entity',
+    'private_entity',
+    'speaker_influencer',
+    'country',
+    'city',
+    'program_series'
+];
+
 $more_link_args = [];
 
 foreach ($filterable_taxonomies as $tax) {
