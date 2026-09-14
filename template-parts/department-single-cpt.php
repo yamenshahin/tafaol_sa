@@ -36,8 +36,8 @@ $tax_query = [
     ],
 ];
 
-// Updated to match your final taxonomy architecture
-$filterable_taxonomies = ['government_entity', 'speaker_influencer', 'private_entity', 'geographic'];
+// Added 'program_series' here so the new filters work in the isolated view too
+$filterable_taxonomies = ['government_entity', 'speaker_influencer', 'private_entity', 'geographic', 'program_series'];
 
 foreach ($filterable_taxonomies as $tax) {
     if (!empty($_GET[$tax])) {
@@ -81,28 +81,33 @@ $isolated_query = new WP_Query([
                 <?php endwhile; ?>
             </div>
 
-            <nav class="flex justify-center" aria-label="<?php esc_attr_e('Pagination', 'hello-elementor-child'); ?>">
-                <div
-                    class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-gray-200 shadow-sm">
-                    <?php
-                    $pagination_args = ['view' => $view];
+            <?php
+            // Only show pagination if there is more than 1 page
+            if ($isolated_query->max_num_pages > 1):
+                ?>
+                <nav class="flex justify-center" aria-label="<?php esc_attr_e('Pagination', 'hello-elementor-child'); ?>">
+                    <div
+                        class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-gray-200 shadow-sm">
+                        <?php
+                        $pagination_args = ['view' => $view];
 
-                    foreach ($filterable_taxonomies as $tax) {
-                        if (!empty($_GET[$tax])) {
-                            $pagination_args[$tax] = sanitize_text_field(wp_unslash($_GET[$tax]));
+                        foreach ($filterable_taxonomies as $tax) {
+                            if (!empty($_GET[$tax])) {
+                                $pagination_args[$tax] = sanitize_text_field(wp_unslash($_GET[$tax]));
+                            }
                         }
-                    }
 
-                    echo paginate_links([
-                        'total' => $isolated_query->max_num_pages,
-                        'current' => $paged,
-                        'prev_text' => __('&laquo; Previous', 'hello-elementor-child'),
-                        'next_text' => __('Next &raquo;', 'hello-elementor-child'),
-                        'add_args' => $pagination_args,
-                    ]);
-                    ?>
-                </div>
-            </nav>
+                        echo paginate_links([
+                            'total' => $isolated_query->max_num_pages,
+                            'current' => $paged,
+                            'prev_text' => __('&laquo; Previous', 'hello-elementor-child'),
+                            'next_text' => __('Next &raquo;', 'hello-elementor-child'),
+                            'add_args' => $pagination_args,
+                        ]);
+                        ?>
+                    </div>
+                </nav>
+            <?php endif; ?>
 
             <?php wp_reset_postdata(); ?>
 
