@@ -5,9 +5,15 @@
  */
 
 $department = $args['department'] ?? null;
+$section = $args['section'] ?? [];
 
-$section_title = get_sub_field('section_title');
-$posts_limit = get_sub_field('posts_limit') ?: 4;
+if (!empty($section)) {
+    $section_title = $section['section_title'] ?? '';
+    $posts_limit = $section['posts_limit'] ?? 4;
+} else {
+    $section_title = get_sub_field('section_title');
+    $posts_limit = get_sub_field('posts_limit') ?: 4;
+}
 
 $tax_query = ['relation' => 'AND'];
 
@@ -24,7 +30,7 @@ $filterable_taxonomies = [
     'private_entity',
     'speaker_influencer',
     'geographic',
-    'program_series'
+    'program_series',
 ];
 
 $more_link_args = [];
@@ -53,7 +59,6 @@ if (!$query->have_posts()) {
     return;
 }
 
-// View All link
 if ($department instanceof WP_Term) {
     $more_link = add_query_arg(array_merge(['view' => 'program'], $more_link_args), get_term_link($department));
 } else {
