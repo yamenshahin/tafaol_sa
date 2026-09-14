@@ -36,6 +36,9 @@ if (!have_rows('social_links', $department)) {
                 $url = get_sub_field('link');
                 $platform_val = get_sub_field('platform') ?: 'fas fa-globe';
 
+                // Fetch the manual follower count
+                $follower_count = get_sub_field('follower_count');
+
                 // Dynamically fetch the Label you assigned in ACF (e.g., "X (Twitter)")
                 $platform_obj = get_sub_field_object('platform');
                 $label = $platform_obj['choices'][$platform_val] ?? 'Website';
@@ -57,7 +60,13 @@ if (!have_rows('social_links', $department)) {
 
                     <span
                         class="text-xs font-semibold text-gray-400 flex items-center group-hover:text-blue-600 transition-colors">
-                        <?php esc_html_e('Visit', 'hello-elementor-child'); ?>
+
+                        <?php if ($follower_count): ?>
+                            <?php echo esc_html($follower_count); ?>
+                        <?php else: ?>
+                            <?php esc_html_e('Visit', 'hello-elementor-child'); ?>
+                        <?php endif; ?>
+
                         <span class="mx-1 transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
                     </span>
 
