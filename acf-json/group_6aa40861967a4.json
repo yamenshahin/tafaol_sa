@@ -182,7 +182,7 @@
                 "layout_6aa40895a7c7d": {
                     "key": "layout_6aa40895a7c7d",
                     "name": "programs_section",
-                    "label": "Programs Section",
+                    "label": "Videos Section",
                     "display": "block",
                     "sub_fields": [
                         {
@@ -538,5 +538,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1789405700
+    "modified": 1789416552
 }

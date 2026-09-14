@@ -3,7 +3,7 @@
     "title": "Editors",
     "menu_order": 0,
     "active": true,
-    "taxonomy": "editor",
+    "taxonomy": "post_editor",
     "object_type": [
         "post",
         "infographic",
@@ -48,12 +48,12 @@
         "assign_terms": "edit_posts"
     },
     "public": 1,
-    "publicly_queryable": 1,
+    "publicly_queryable": 0,
     "hierarchical": 1,
     "show_ui": 1,
     "show_in_menu": 1,
     "show_in_nav_menus": 1,
-    "show_in_rest": 1,
+    "show_in_rest": 0,
     "rest_base": "",
     "rest_namespace": "wp\/v2",
     "rest_controller_class": "WP_REST_Terms_Controller",
@@ -65,7 +65,7 @@
         "with_front": "1",
         "rewrite_hierarchical": "0"
     },
-    "query_var": "post_type_key",
+    "query_var": "taxonomy_key",
     "query_var_name": "",
     "default_term": {
         "default_term_enabled": "0"
@@ -76,5 +76,5 @@
     "meta_box_sanitize_cb": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1789414028
+    "modified": 1789416429
 }
