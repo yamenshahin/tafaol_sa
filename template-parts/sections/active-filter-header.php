@@ -12,6 +12,7 @@ $filterable = [
     'private_entity' => __('Private Sector Entity', 'hello-elementor-child'),
     'speaker_influencer' => __('Speaker & Influencer', 'hello-elementor-child'),
     'geographic' => __('Geographic Location', 'hello-elementor-child'),
+    'program_series' => __('Program Series', 'hello-elementor-child'),
 ];
 
 $active_tax = null;
