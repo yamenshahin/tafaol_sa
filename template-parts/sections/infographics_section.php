@@ -74,7 +74,7 @@ if ($department instanceof WP_Term) {
             <?php endif; ?>
             <a href="<?php echo esc_url($more_link); ?>"
                 class="text-sm font-medium text-red-600 hover:text-red-800 transition-colors">
-                <?php esc_html_e('View All Infographics', 'hello-elementor-child'); ?> &rarr;
+                <?php echo esc_html(sprintf(__('View All %s', 'hello-elementor-child'), $section_title)); ?> &rarr;
             </a>
         </header>
 

@@ -95,7 +95,7 @@ if ($department instanceof WP_Term) {
 
             <a href="<?php echo esc_url($more_link); ?>"
                 class="text-sm font-medium text-green-600 hover:text-green-800 transition-colors">
-                <?php esc_html_e('View All News', 'hello-elementor-child'); ?> &rarr;
+                <?php echo esc_html(sprintf(__('View All %s', 'hello-elementor-child'), $section_title)); ?> &rarr;
             </a>
         </header>
 
