@@ -67,8 +67,26 @@ $isolated_query = new WP_Query([
 
         <header class="mb-12 border-b border-gray-100 pb-6">
             <h1 class="text-3xl font-bold text-gray-900 tracking-tight">
-                <?php echo esc_html($department->name); ?> —
-                <span class="text-gray-500"><?php echo esc_html(ucwords(str_replace(['-', '_'], ' ', $view))); ?></span>
+                <?php
+                if ($view === 'post') {
+                    $view_text = __('News', 'hello-elementor-child');
+                } elseif ($view === 'program') {
+                    $view_text = __('Videos', 'hello-elementor-child');
+                } else {
+                    $post_type_obj = get_post_type_object($view);
+                    // Note: Post type labels are automatically translatable if they were registered with translatable strings in ACF or functions.php.
+                    $view_text = $post_type_obj ? $post_type_obj->labels->name : ucwords(str_replace(['-', '_'], ' ', $view));
+                }
+
+                $styled_view = sprintf('<span class="text-gray-500">%s</span>', esc_html($view_text));
+
+                printf(
+                    /* translators: 1: Department name, 2: Post type label (e.g., News, Videos) */
+                    esc_html__('%1$s — %2$s', 'hello-elementor-child'),
+                    esc_html($department->name),
+                    $styled_view
+                );
+                ?>
             </h1>
         </header>
 
