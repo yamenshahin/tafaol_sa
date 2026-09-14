@@ -62,7 +62,7 @@ if ($department instanceof WP_Term) {
 }
 ?>
 
-<section class="py-12 border-b border-gray-100 last:border-0">
+<section class="department-section programs-section py-12 border-b border-gray-100 last:border-0">
     <div class="max-w-7xl mx-auto px-6">
         <header class="flex justify-between items-end mb-8">
             <?php if ($section_title): ?>
