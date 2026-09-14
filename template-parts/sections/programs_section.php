@@ -23,8 +23,7 @@ $filterable_taxonomies = [
     'government_entity',
     'private_entity',
     'speaker_influencer',
-    'country',
-    'city',
+    'geographic',
     'program_series'
 ];
 

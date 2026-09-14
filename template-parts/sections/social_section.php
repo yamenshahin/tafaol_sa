@@ -7,9 +7,32 @@ if (!$department instanceof WP_Term) {
     return;
 }
 
+// Bail early if we are on a Filter + Department view
+$active_filters = [
+    'government_entity',
+    'private_entity',
+    'speaker_influencer',
+    'geographic',
+    'country',
+    'city',
+    'program_series'
+];
+
+foreach ($active_filters as $filter) {
+    if (!empty($_GET[$filter])) {
+        return;
+    }
+}
+
 // Use ACF have_rows to enable sub-field object querying
 if (!have_rows('social_links', $department)) {
     return;
+}
+
+// Fetch dynamic description, fallback to default if empty
+$detailed_description = get_field('detailed_description', $department);
+if (empty($detailed_description)) {
+    $detailed_description = __('Follow us across our digital platforms for the latest updates, programs, and exclusive insights.', 'hello-elementor-child');
 }
 ?>
 
@@ -25,7 +48,7 @@ if (!have_rows('social_links', $department)) {
         </h2>
 
         <p class="text-lg text-gray-500 max-w-2xl mx-auto mb-12">
-            <?php esc_html_e('Follow us across our digital platforms for the latest updates, programs, and exclusive insights.', 'hello-elementor-child'); ?>
+            <?php echo wp_kses_post($detailed_description); ?>
         </p>
 
         <div class="flex flex-wrap justify-center gap-6">
