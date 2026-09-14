@@ -3,12 +3,21 @@
  * Flexible Content: Geographic Section (Filter)
  * Complex Hierarchical: Parents (Countries) -> Children (Cities)
  */
+
 $department = $args['department'] ?? null;
 if (!$department instanceof WP_Term) {
     return;
 }
 
-$section_title = get_sub_field('section_title') ?: __('Geographic Locations', 'hello-elementor-child');
+$section = $args['section'] ?? [];
+
+if (!empty($section)) {
+    $section_title = $section['section_title'] ?? '';
+} else {
+    $section_title = get_sub_field('section_title');
+}
+
+$section_title = $section_title ?: __('Geographic Locations', 'hello-elementor-child');
 $target_taxonomy = 'geographic';
 $query_var = 'geographic';
 
@@ -92,8 +101,8 @@ if (!empty($_GET[$query_var])) {
                     $attr = $has_children ? 'type="button" onclick="openCities(' . $parent_id . ')"' : 'href="' . esc_url($url) . '"';
                     ?>
 
-                    <<?php echo $tag; ?>     <?php echo $attr; ?>
-                        class="group flex-none w-48 snap-start flex flex-col items-center p-6 bg-white border
+                    <<?php echo $tag; ?>     <?php echo $attr; ?> class="group flex-none w-48 snap-start flex flex-col
+                        items-center p-6 bg-white border
                         border-gray-100 rounded-2xl hover:border-gray-200 hover:shadow-xl hover:shadow-gray-200/50
                         hover:-translate-y-1 transition-all duration-300 ease-out text-left focus:outline-none">
 

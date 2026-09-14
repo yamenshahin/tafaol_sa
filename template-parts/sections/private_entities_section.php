@@ -2,12 +2,21 @@
 /**
  * Flexible Content: Private Entities Section
  */
+
 $department = $args['department'] ?? null;
 if (!$department instanceof WP_Term) {
     return;
 }
 
-$section_title = get_sub_field('section_title') ?: __('Private Sector Entities', 'hello-elementor-child');
+$section = $args['section'] ?? [];
+
+if (!empty($section)) {
+    $section_title = $section['section_title'] ?? '';
+} else {
+    $section_title = get_sub_field('section_title');
+}
+
+$section_title = $section_title ?: __('Private Sector Entities', 'hello-elementor-child');
 $target_taxonomy = 'private_entity';
 $query_var = 'private_entity';
 
