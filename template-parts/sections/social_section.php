@@ -7,6 +7,10 @@
 
 $department = $args['department'] ?? null;
 
+if (!$department instanceof WP_Term) {
+    return; // never render on homepage
+}
+
 // Context: department term OR current page on homepage
 if ($department instanceof WP_Term) {
     $context = $department;

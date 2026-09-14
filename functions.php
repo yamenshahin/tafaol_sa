@@ -207,3 +207,44 @@ add_action('admin_menu', function () {
 	remove_submenu_page('edit.php', 'edit-tags.php?taxonomy=post_tag');
 	remove_submenu_page('edit.php', 'edit-tags.php?taxonomy=category');
 });
+
+/**
+ * Hide Social Media layout from Flexible Content when editing Pages (e.g. Home).
+ * Keep it available when editing Department terms.
+ */
+add_filter('acf/load_field/name=department_sections', function ($field) {
+	if (!is_admin()) {
+		return $field;
+	}
+
+	// Only when editing a Page (Home uses a Page)
+	$post_id = isset($_GET['post']) ? (int) $_GET['post'] : 0;
+
+	$is_page_screen = false;
+
+	if ($post_id && get_post_type($post_id) === 'page') {
+		$is_page_screen = true;
+	} elseif (isset($_GET['post_type']) && $_GET['post_type'] === 'page') {
+		// post-new.php?post_type=page
+		$is_page_screen = true;
+	}
+
+	if (!$is_page_screen) {
+		return $field; // Department term screens keep Social layout
+	}
+
+	if (empty($field['layouts']) || !is_array($field['layouts'])) {
+		return $field;
+	}
+
+	foreach ($field['layouts'] as $key => $layout) {
+		if (isset($layout['name']) && $layout['name'] === 'social_section') {
+			unset($field['layouts'][$key]);
+		}
+	}
+
+	// Re-index so ACF stays happy
+	$field['layouts'] = array_values($field['layouts']);
+
+	return $field;
+});
