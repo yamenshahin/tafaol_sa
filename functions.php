@@ -192,3 +192,18 @@ function dynamic_department_custom_logo($default_logo_id)
 	// 3. Fallback to the default global logo
 	return $default_logo_id;
 }
+
+/**
+ * Hide tag and category taxonomies
+ */
+add_action('init', function () {
+	foreach (get_post_types() as $post_type) {
+		unregister_taxonomy_for_object_type('category', $post_type);
+		unregister_taxonomy_for_object_type('post_tag', $post_type);
+	}
+}, 20);
+
+add_action('admin_menu', function () {
+	remove_submenu_page('edit.php', 'edit-tags.php?taxonomy=post_tag');
+	remove_submenu_page('edit.php', 'edit-tags.php?taxonomy=category');
+});
