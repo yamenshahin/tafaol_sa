@@ -1,17 +1,17 @@
 <?php
 /**
  * Flexible Content: Custom Ad Code Section
- * Department → get_sub_field()
- * Homepage  → $args['section']
  */
 
 $department = $args['department'] ?? null;
 $section = $args['section'] ?? [];
 
-if ($department instanceof WP_Term) {
+// Primary: data passed from parent
+$ad_code = $section['ad_code'] ?? null;
+
+// Fallback: only if parent did not pass section data
+if ($ad_code === null && empty($section)) {
     $ad_code = get_sub_field('ad_code', false);
-} else {
-    $ad_code = $section['ad_code'] ?? '';
 }
 
 if (empty($ad_code)) {

@@ -1,21 +1,19 @@
 <?php
 /**
  * Flexible Content: Ad Banner Section
- * Department → get_sub_field()
- * Homepage  → $args['section']
  */
 
 $department = $args['department'] ?? null;
 $section = $args['section'] ?? [];
 
-if ($department instanceof WP_Term) {
-    // Department page – keep existing working method
+// Primary: data passed from parent (get_field loop)
+$ad_image = $section['ad_image'] ?? null;
+$ad_link = $section['ad_link'] ?? null;
+
+// Fallback: only if parent did not pass section data
+if ($ad_image === null && empty($section)) {
     $ad_image = get_sub_field('ad_image');
     $ad_link = get_sub_field('ad_link');
-} else {
-    // Homepage – use data passed from parent
-    $ad_image = $section['ad_image'] ?? null;
-    $ad_link = $section['ad_link'] ?? null;
 }
 
 $image_id = 0;
